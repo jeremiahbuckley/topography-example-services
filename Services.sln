@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SvcInterfaces", "SvcInterfaces\SvcInterfaces.csproj", "{C97F1388-40E6-4BB6-A049-AF301A54B4DB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportSvc", "ReportSvc\ReportSvc.csproj", "{B7921EB7-DC87-4725-B502-44D4E103B41E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminSvc", "AdminSvc\AdminSvc.csproj", "{89E2B604-40DE-433E-BABE-DBA9022DE121}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SvcInterfaces", "SvcInterfaces\SvcInterfaces.csproj", "{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,22 +21,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|ARM.Build.0 = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|x64.Build.0 = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Debug|x86.Build.0 = Debug|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|ARM.ActiveCfg = Release|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|ARM.Build.0 = Release|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|x64.ActiveCfg = Release|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|x64.Build.0 = Release|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|x86.ActiveCfg = Release|Any CPU
-		{C97F1388-40E6-4BB6-A049-AF301A54B4DB}.Release|x86.Build.0 = Release|Any CPU
 		{B7921EB7-DC87-4725-B502-44D4E103B41E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B7921EB7-DC87-4725-B502-44D4E103B41E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7921EB7-DC87-4725-B502-44D4E103B41E}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -69,11 +53,28 @@ Global
 		{89E2B604-40DE-433E-BABE-DBA9022DE121}.Release|x64.Build.0 = Release|Any CPU
 		{89E2B604-40DE-433E-BABE-DBA9022DE121}.Release|x86.ActiveCfg = Release|Any CPU
 		{89E2B604-40DE-433E-BABE-DBA9022DE121}.Release|x86.Build.0 = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|ARM.Build.0 = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|x64.Build.0 = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Debug|x86.Build.0 = Debug|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|ARM.ActiveCfg = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|ARM.Build.0 = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|x64.ActiveCfg = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|x64.Build.0 = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|x86.ActiveCfg = Release|Any CPU
+		{C7F46381-CE6E-40E6-AEE2-A6A7E2C1A6D3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
 		SolutionGuid = {F310778F-BEDE-4058-94D2-A475C0E4BF42}
 	EndGlobalSection
 EndGlobal

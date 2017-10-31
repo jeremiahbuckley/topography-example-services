@@ -12,6 +12,19 @@ namespace ReportSvc
 {
 	public partial class ReportSvc : ServiceBase
 	{
+		/// <summary>
+		/// The main entry point for the application.
+		/// </summary>
+		static void Main()
+		{
+			ServiceBase[] ServicesToRun;
+			ServicesToRun = new ServiceBase[]
+			{
+				new ReportSvc()
+			};
+			ServiceBase.Run(ServicesToRun);
+		}
+
 		public ReportSvc()
 		{
 			InitializeComponent();
