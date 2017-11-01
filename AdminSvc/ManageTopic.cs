@@ -11,17 +11,21 @@ namespace AdminSvc
 	{
 		public string CreateTopic(string name)
 		{
-			throw new NotImplementedException();
+			return name + "!";
 		}
 
 		public bool DeleteTopic(string name)
 		{
-			throw new NotImplementedException();
+			return true;
 		}
 
 		public IList<string> GetTopics()
 		{
-			throw new NotImplementedException();
+			IList<string> x = new List<string>();
+			x.Add("a");
+			x.Add("b");
+			x.Add("c");
+			return x;
 		}
 	}
 }

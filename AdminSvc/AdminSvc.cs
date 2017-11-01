@@ -58,14 +58,14 @@ namespace AdminSvc
 		{
 			log.Write("Starting AdminSvc", "General");
 
-			if (manageUserServiceHost != null)
-			{
-				manageUserServiceHost.Close();
-			}
-
 			if (manageTopicServiceHost != null)
 			{
 				manageTopicServiceHost.Close();
+			}
+
+			if (manageUserServiceHost != null)
+			{
+				manageUserServiceHost.Close();
 			}
 
 			if (runReportServiceHost != null)
@@ -73,12 +73,12 @@ namespace AdminSvc
 				runReportServiceHost.Close();
 			}
 
-			manageUserServiceHost = new ServiceHost(typeof(ManageUser));
 			manageTopicServiceHost = new ServiceHost(typeof(ManageTopic));
+			manageUserServiceHost = new ServiceHost(typeof(ManageUser));
 			runReportServiceHost = new ServiceHost(typeof(RunReport));
 
-			manageUserServiceHost.Open();
 			manageTopicServiceHost.Open();
+			manageUserServiceHost.Open();
 			runReportServiceHost.Open();
 
 			log.Write("Completed AdminSvc Start", "General");
@@ -87,16 +87,16 @@ namespace AdminSvc
 
 		protected override void OnStop()
 		{
-			if (manageUserServiceHost != null)
-			{
-				manageUserServiceHost.Close();
-				manageUserServiceHost = null;
-			}
-
 			if (manageTopicServiceHost != null)
 			{
 				manageTopicServiceHost.Close();
 				manageTopicServiceHost = null;
+			}
+
+			if (manageUserServiceHost != null)
+			{
+				manageUserServiceHost.Close();
+				manageUserServiceHost = null;
 			}
 
 			if (runReportServiceHost != null)
