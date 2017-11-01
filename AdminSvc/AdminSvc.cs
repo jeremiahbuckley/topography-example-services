@@ -20,26 +20,6 @@ namespace AdminSvc
 
 		private static LogWriter log;
 
-		///// <summary>
-		///// The main entry point for the application.
-		///// </summary>
-		//static void Main(string[] args)
-		//{
-		//	Console.WriteLine("hi");
-		//	Console.ReadLine();
-		//	if (Environment.UserInteractive)
-		//	{
-		//		AdminSvc asvc = new AdminSvc();
-		//		asvc.TestStartupAndStop(args);
-		//	}
-		//	ServiceBase[] ServicesToRun;
-		//	ServicesToRun = new ServiceBase[]
-		//	{
-		//		new AdminSvc()
-		//	};
-		//	ServiceBase.Run(ServicesToRun);
-		//}
-
 		internal void TestStartupAndStop(string[] args)
 		{
 			this.OnStart(args);

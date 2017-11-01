@@ -28,5 +28,10 @@ namespace AdminSvc
 		{
 			throw new NotImplementedException();
 		}
+
+		public IList<User> GetUsers()
+		{
+			throw new NotImplementedException();
+		}
 	}
 }

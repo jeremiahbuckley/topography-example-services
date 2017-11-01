@@ -9,23 +9,32 @@ namespace AdminSvc
 {
 	public class ManageTopic : IManageTopic
 	{
-		public string CreateTopic(string name)
+		private DataLayer dl;
+		public ManageTopic()
 		{
-			return name + "!";
+			this.dl = new DataLayer();
 		}
 
-		public bool DeleteTopic(string name)
+		public int CreateTopic(string name)
 		{
-			return true;
+			return dl.TopicCreate(name, true);
 		}
 
-		public IList<string> GetTopics()
+		public bool DeleteTopic(int id)
 		{
-			IList<string> x = new List<string>();
-			x.Add("a");
-			x.Add("b");
-			x.Add("c");
-			return x;
+			try
+			{
+				dl.TopicDelete(id);
+				return true;
+			} catch(Exception ex)
+			{
+				return false;
+			}
+		}
+
+		public IList<Topic> GetTopics()
+		{
+			return dl.TopicReadAll();
 		}
 	}
 }

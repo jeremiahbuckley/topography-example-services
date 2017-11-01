@@ -22,6 +22,8 @@ namespace SvcInterfaces
 
 		[OperationContract]
 		bool DeleteUser(string uid);
-		
+
+		[OperationContract]
+		IList<User> GetUsers();
 	}
 }

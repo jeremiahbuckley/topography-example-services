@@ -11,12 +11,12 @@ namespace SvcInterfaces
 	public interface IManageTopic
 	{
 		[OperationContract]
-		string CreateTopic(string name);
+		int CreateTopic(string name);
 
 		[OperationContract]
-		bool DeleteTopic(string name);
+		bool DeleteTopic(int id);
 
 		[OperationContract]
-		IList<string> GetTopics();
+		IList<Topic> GetTopics();
 	}
 }
