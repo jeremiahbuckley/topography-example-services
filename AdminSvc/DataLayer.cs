@@ -29,8 +29,8 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("Topic_Insert");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["name"].Value = name;
-			cmd.Parameters["enabled"].Value = enabled;
+			cmd.Parameters["@name"].Value = name;
+			cmd.Parameters["@enabled"].Value = enabled;
 
 			var id = (int)db.ExecuteScalar(cmd);
 
@@ -43,7 +43,7 @@ namespace AdminSvc
 			db.DiscoverParameters(cmd);
 			if (id.HasValue)
 			{
-				cmd.Parameters["id"].Value = id.Value;
+				cmd.Parameters["@id"].Value = id.Value;
 			}
 
 			var results = new List<Topic>();
@@ -55,6 +55,7 @@ namespace AdminSvc
 					result.Id = reader.GetInt32(reader.GetOrdinal("Id"));
 					result.Name = reader.GetString(reader.GetOrdinal("Name"));
 					result.Enabled = reader.GetBoolean(reader.GetOrdinal("Enabled"));
+					result.Version = (byte[])reader.GetValue(reader.GetOrdinal("Version"));
 					results.Add(result);
 				}
 			}
@@ -67,13 +68,14 @@ namespace AdminSvc
 			return TopicRead(null);
 		}
 
-		public int TopicUpdate(int id, string name, bool enabled)
+		public int TopicUpdate(int id, byte[] version, string name, bool enabled)
 		{
 			var cmd = db.GetStoredProcCommand("Topic_Update");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
-			cmd.Parameters["name"].Value = name;
-			cmd.Parameters["enabled"].Value = enabled;
+			cmd.Parameters["@id"].Value = id;
+			cmd.Parameters["@version"].Value = version;
+			cmd.Parameters["@name"].Value = name;
+			cmd.Parameters["@enabled"].Value = enabled;
 
 			int updateId = -1;
 			using (var reader = db.ExecuteReader(cmd))
@@ -91,7 +93,7 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("Topic_Delete");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
+			cmd.Parameters["@id"].Value = id;
 			db.ExecuteNonQuery(cmd);
 		}
 		#endregion
@@ -101,14 +103,14 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("Thread_Insert");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["name"].Value = name;
-			cmd.Parameters["pinned"].Value = pinned;
-			cmd.Parameters["topicid"].Value = topicId;
-			cmd.Parameters["enabled"].Value = enabled;
+			cmd.Parameters["@name"].Value = name;
+			cmd.Parameters["@pinned"].Value = pinned;
+			cmd.Parameters["@topicid"].Value = topicId;
+			cmd.Parameters["@enabled"].Value = enabled;
 			
 			if (pinOrder.HasValue)
 			{
-				cmd.Parameters["pinorder"].Value = pinOrder;
+				cmd.Parameters["@pinorder"].Value = pinOrder;
 			}
 
 			var id = (int)db.ExecuteScalar(cmd);
@@ -122,7 +124,7 @@ namespace AdminSvc
 			db.DiscoverParameters(cmd);
 			if (id.HasValue)
 			{
-				cmd.Parameters["id"].Value = id.Value;
+				cmd.Parameters["@id"].Value = id.Value;
 			}
 
 			var results = new List<Thread>();
@@ -139,6 +141,7 @@ namespace AdminSvc
 					{
 						result.PinOrder = reader.GetInt32(reader.GetOrdinal("PinOrder"));
 					}
+					result.Version = (byte[])reader.GetValue(reader.GetOrdinal("Version"));
 					results.Add(result);
 				}
 			}
@@ -151,18 +154,19 @@ namespace AdminSvc
 			return ThreadRead(null);
 		}
 
-		public int ThreadUpdate(int id, string name, int topicId, bool enabled, bool pinned, int? pinOrder)
+		public int ThreadUpdate(int id, byte[] version, string name, int topicId, bool enabled, bool pinned, int? pinOrder)
 		{
 			var cmd = db.GetStoredProcCommand("Thread_Update");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
-			cmd.Parameters["name"].Value = name;
-			cmd.Parameters["pinned"].Value = pinned;
-			cmd.Parameters["topicid"].Value = topicId;
-			cmd.Parameters["enabled"].Value = enabled;
+			cmd.Parameters["@id"].Value = id;
+			cmd.Parameters["@version"].Value = version;
+			cmd.Parameters["@name"].Value = name;
+			cmd.Parameters["@pinned"].Value = pinned;
+			cmd.Parameters["@topicid"].Value = topicId;
+			cmd.Parameters["@enabled"].Value = enabled;
 			if (pinOrder.HasValue)
 			{
-				cmd.Parameters["pinorder"].Value = pinOrder;
+				cmd.Parameters["@pinorder"].Value = pinOrder;
 			}
 
 			int updateId = -1;
@@ -181,7 +185,7 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("Thread_Delete");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
+			cmd.Parameters["@id"].Value = id;
 			db.ExecuteNonQuery(cmd);
 		}
 		#endregion
@@ -191,8 +195,8 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("User_Insert");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["name"].Value = name;
-			cmd.Parameters["enabled"].Value = enabled;
+			cmd.Parameters["@name"].Value = name;
+			cmd.Parameters["@enabled"].Value = enabled;
 
 			var id = (int)db.ExecuteScalar(cmd);
 
@@ -205,7 +209,7 @@ namespace AdminSvc
 			db.DiscoverParameters(cmd);
 			if (id.HasValue)
 			{
-				cmd.Parameters["id"].Value = id.Value;
+				cmd.Parameters["@id"].Value = id.Value;
 			}
 
 			var results = new List<User>();
@@ -218,6 +222,7 @@ namespace AdminSvc
 					result.Name = reader.GetString(reader.GetOrdinal("Name"));
 					result.Enabled = reader.GetBoolean(reader.GetOrdinal("Enabled"));
 					result.DateTimeJoined = reader.GetDateTime(reader.GetOrdinal("DateTimeJoined"));
+					result.Version = (byte[])reader.GetValue(reader.GetOrdinal("Version"));
 					results.Add(result);
 				}
 			}
@@ -230,13 +235,14 @@ namespace AdminSvc
 			return UserRead(null);
 		}
 
-		public int UserUpdate(int id, string name, bool enabled)
+		public int UserUpdate(int id, byte[] version, string name, bool enabled)
 		{
 			var cmd = db.GetStoredProcCommand("User_Update");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
-			cmd.Parameters["name"].Value = name;
-			cmd.Parameters["enabled"].Value = enabled;
+			cmd.Parameters["@id"].Value = id;
+			cmd.Parameters["@version"].Value = version;
+			cmd.Parameters["@name"].Value = name;
+			cmd.Parameters["@enabled"].Value = enabled;
 
 			int updateId = -1;
 			using (var reader = db.ExecuteReader(cmd))
@@ -254,7 +260,7 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("User_Delete");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
+			cmd.Parameters["@id"].Value = id;
 			db.ExecuteNonQuery(cmd);
 		}
 		#endregion
@@ -264,13 +270,13 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("Comment_Insert");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["topicid"].Value = topicId;
-			cmd.Parameters["threadid"].Value = threadId;
-			cmd.Parameters["userid"].Value = userId;
-			cmd.Parameters["comment"].Value = comment;
+			cmd.Parameters["@topicid"].Value = topicId;
+			cmd.Parameters["@threadid"].Value = threadId;
+			cmd.Parameters["@userid"].Value = userId;
+			cmd.Parameters["@comment"].Value = comment;
 			if (replyToCommentId.HasValue)
 			{
-				cmd.Parameters["replytocommentid"].Value = replyToCommentId;
+				cmd.Parameters["@replytocommentid"].Value = replyToCommentId;
 			}
 
 			var id = (int)db.ExecuteScalar(cmd);
@@ -284,7 +290,7 @@ namespace AdminSvc
 			db.DiscoverParameters(cmd);
 			if (id.HasValue)
 			{
-				cmd.Parameters["id"].Value = id.Value;
+				cmd.Parameters["@id"].Value = id.Value;
 			}
 
 			var results = new List<Comment>();
@@ -303,6 +309,7 @@ namespace AdminSvc
 					}
 					result.CommentStr = reader.GetString(reader.GetOrdinal("Comment"));
 					result.DateTimeAdded = reader.GetDateTime(reader.GetOrdinal("DateTimeAdded"));
+					result.Version = (byte[])reader.GetValue(reader.GetOrdinal("Version"));
 					results.Add(result);
 				}
 			}
@@ -315,18 +322,19 @@ namespace AdminSvc
 			return CommentRead(null);
 		}
 
-		public int CommentUpdate(int id, int topicId, int threadId, int userId, string comment, int? replyToCommentId)
+		public int CommentUpdate(int id, byte[] version, int topicId, int threadId, int userId, string comment, int? replyToCommentId)
 		{
 			var cmd = db.GetStoredProcCommand("Comment_Update");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
-			cmd.Parameters["topicid"].Value = topicId;
-			cmd.Parameters["threadid"].Value = threadId;
-			cmd.Parameters["userid"].Value = userId;
-			cmd.Parameters["comment"].Value = comment;
+			cmd.Parameters["@id"].Value = id;
+			cmd.Parameters["@version"].Value = version;
+			cmd.Parameters["@topicid"].Value = topicId;
+			cmd.Parameters["@threadid"].Value = threadId;
+			cmd.Parameters["@userid"].Value = userId;
+			cmd.Parameters["@comment"].Value = comment;
 			if (replyToCommentId.HasValue)
 			{
-				cmd.Parameters["replytocommentid"].Value = replyToCommentId;
+				cmd.Parameters["@replytocommentid"].Value = replyToCommentId;
 			}
 
 			int updateId = -1;
@@ -345,7 +353,7 @@ namespace AdminSvc
 		{
 			var cmd = db.GetStoredProcCommand("Comment_Delete");
 			db.DiscoverParameters(cmd);
-			cmd.Parameters["id"].Value = id;
+			cmd.Parameters["@id"].Value = id;
 			db.ExecuteNonQuery(cmd);
 		}
 		#endregion

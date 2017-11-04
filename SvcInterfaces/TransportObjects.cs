@@ -15,6 +15,7 @@ namespace SvcInterfaces
 		public int? ReplyToCommentId { get; set; }
 		public string CommentStr { get; set; }
 		public DateTime DateTimeAdded { get; set; }
+		public byte[] Version { get; set; }
 
 		public Comment ReplyToComment { get; set; }
 		public Thread Thread { get; set; }
@@ -30,6 +31,7 @@ namespace SvcInterfaces
 		public bool Enabled { get; set; }
 		public bool Pinned { get; set; }
 		public int? PinOrder { get; set; }
+		public byte[] Version { get; set; }
 
 		public Dictionary<int, Comment> Comments {get; set;}
 		public Thread Topic { get; set; }
@@ -40,6 +42,7 @@ namespace SvcInterfaces
 		public int Id { get; set; }
 		public string Name { get; set; }
 		public bool Enabled { get; set; }
+		public byte[] Version { get; set; }
 		
 		public Dictionary<int, Thread> Threads { get; set; }
 	}
@@ -50,6 +53,7 @@ namespace SvcInterfaces
 		public string Name { get; set; }
 		public bool Enabled { get; set; }
 		public DateTime DateTimeJoined { get; set; }
+		public byte[] Version { get; set; }
 
 		public Dictionary<int, Comment> Comments { get; set; }
 	}
