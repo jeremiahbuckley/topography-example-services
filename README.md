@@ -12,7 +12,7 @@ Currently the WCF communication is over http, so you will need to set this up th
 
 Assuming that at least two or three users will be using this service (the developer as Themselves, and then whatever role is running the actual prod service), this command will do it for you.
 
-\> netsh http add "http://localhost:3700/Service/" "\Everyone"
+\\> netsh http add "http://localhost:3700/Service/" "\Everyone"
 
 ## SQL Setup
 
@@ -21,4 +21,6 @@ AdminSvc -> App.config has a connectionString. You may need to edit this if you 
 ## Running
 1. For Debugging purposes, can be run directly out of Visual Studio, which is nice.
 2. For Production, run: 
-\> InstallUtil .\AdminSvc\bin\Release\AdminSvc.exe
+
+
+\\> InstallUtil .\AdminSvc\bin\Release\AdminSvc.exe
