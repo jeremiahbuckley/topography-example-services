@@ -9,29 +9,60 @@ namespace AdminSvc
 {
 	public class ManageUser : IManageUser
 	{
-		public string CreateUser(string name, bool isEnabled)
+		private DataLayer dl;
+		public ManageUser()
 		{
-			throw new NotImplementedException();
+			this.dl = new DataLayer();
 		}
 
-		public bool DeleteUser(string uid)
+
+		public int CreateUser(string name, bool isEnabled)
 		{
-			throw new NotImplementedException();
+			return dl.UserCreate(name, true);
 		}
 
-		public string EditUserName(string uid, string name)
+		public bool DeleteUser(int uid)
 		{
-			throw new NotImplementedException();
+			try
+			{
+				dl.UserDelete(uid);
+				return true;
+			}
+			catch (Exception ex)
+			{
+				return false;
+			}
 		}
 
-		public bool UserEnableDisable(string uid, bool enable)
+		public bool EditUserName(int uid, string name)
 		{
-			throw new NotImplementedException();
+			var users = dl.UserRead(uid);
+			if (users == null || users.Count == 0)
+				return false;
+			var user = users[0];
+
+			if (dl.UserUpdate(user.Id, user.Version, name, user.Enabled) < 0)
+				return false;
+
+			return true;
+		}
+
+		public bool UserEnableDisable(int uid, bool enable)
+		{
+			var users = dl.UserRead(uid);
+			if (users == null || users.Count == 0)
+				return false;
+			var user = users[0];
+
+			if (dl.UserUpdate(user.Id, user.Version, user.Name, enable) < 0)
+				return false;
+
+			return true;
 		}
 
 		public IList<User> GetUsers()
 		{
-			throw new NotImplementedException();
+			return dl.UserReadAll();
 		}
 	}
 }

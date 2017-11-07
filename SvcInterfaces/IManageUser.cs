@@ -12,16 +12,16 @@ namespace SvcInterfaces
 	public interface IManageUser
 	{
 		[OperationContract]
-		string EditUserName(string uid, string name);
+		bool EditUserName(int uid, string name);
 
 		[OperationContract]
-		bool UserEnableDisable(string uid, bool enable);
+		bool UserEnableDisable(int uid, bool enable);
 
 		[OperationContract]
-		string CreateUser(string name, bool isEnabled);
+		int CreateUser(string name, bool isEnabled);
 
 		[OperationContract]
-		bool DeleteUser(string uid);
+		bool DeleteUser(int uid);
 
 		[OperationContract]
 		IList<User> GetUsers();

@@ -237,23 +237,31 @@ namespace AdminSvc
 
 		public int UserUpdate(int id, byte[] version, string name, bool enabled)
 		{
-			var cmd = db.GetStoredProcCommand("User_Update");
-			db.DiscoverParameters(cmd);
-			cmd.Parameters["@id"].Value = id;
-			cmd.Parameters["@version"].Value = version;
-			cmd.Parameters["@name"].Value = name;
-			cmd.Parameters["@enabled"].Value = enabled;
-
-			int updateId = -1;
-			using (var reader = db.ExecuteReader(cmd))
+			try
 			{
-				while (reader.Read())
+				var cmd = db.GetStoredProcCommand("User_Update");
+				db.DiscoverParameters(cmd);
+				cmd.Parameters["@id"].Value = id;
+				cmd.Parameters["@version"].Value = version;
+				cmd.Parameters["@name"].Value = name;
+				cmd.Parameters["@enabled"].Value = enabled;
+
+				int updateId = -1;
+				using (var reader = db.ExecuteReader(cmd))
 				{
-					id = reader.GetInt32(reader.GetOrdinal("Id"));
+					while (reader.Read())
+					{
+						id = reader.GetInt32(reader.GetOrdinal("Id"));
+					}
 				}
+
+				return updateId;
+			}
+			catch (SqlException ex)
+			{
+				return -1;
 			}
 
-			return updateId;
 		}
 
 		public void UserDelete(int id)
